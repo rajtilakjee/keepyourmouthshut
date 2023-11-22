@@ -1,0 +1,7 @@
+elevenlabs
+pydub
+PyYAML
+openai
+pre-commit
+fastapi[all]
+shutil
