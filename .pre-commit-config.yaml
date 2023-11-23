@@ -1,0 +1,45 @@
+default_language_version:
+  python: python3
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.2.1
+    hooks:
+      - id: autoflake # Removes unused imports and unused variables from Python code.
+        args:
+          - --in-place
+          - --remove-all-unused-imports
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8 # Lints Python code for errors and code style issues based on PEP8.
+        types:
+          - python
+        args: ["--max-line-length=1000", "--ignore=E203, E999"]
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.3
+    hooks:
+      - id: prettier # An opinionated code formatter supporting multiple languages.
+        name: prettier
+        types_or:
+          - yaml
+          - markdown
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.1.6
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [--fix]
+      # Run the formatter.
+      - id: ruff-format
