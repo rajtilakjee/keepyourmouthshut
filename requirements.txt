@@ -5,3 +5,5 @@ shutil
 elevenlabs
 pydub
 PyYAML
+python-dotenv
+requests

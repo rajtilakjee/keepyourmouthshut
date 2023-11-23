@@ -1,7 +1,6 @@
 import uuid
 from elevenlabs import set_api_key
 from pydub import AudioSegment
-import openai
 import shutil
 
 from prompts import (
@@ -11,35 +10,34 @@ from prompts import (
     podcast_segment,
     podcast_segue,
 )
-from utils import date_stuff, eleven_labs_stuff, open_ai_stuff, string_stuff
+from utils import date_stuff, eleven_labs_stuff, string_stuff, llmOS_stuff
 
 _SECOND = 1000
 
 
-def gencast(openai_api, elevenlabs_api, name, desc, topics, adverts):
+def gencast(elevenlabs_api, name, desc, topics, adverts):
     set_api_key(elevenlabs_api)
-    openai.api_key = openai_api
     current_date = date_stuff.get_tomorrows_date_for_file_names()
     unique_id = uuid.uuid4()
 
-    # (CONTENT) Generate scripts for top 3 comments from FIRST pinned post
+    # Generate scripts for the topics
     script_segments = []
     for topic in topics:
-        script_segment = open_ai_stuff.generate_response(
+        script_segment = llmOS_stuff.generate_response(
             podcast_segment.SYSTEM_PROMPT, podcast_segment.PROMPT.format(topic=topic)
         )
         script_segments.append(script_segment)
 
-    # (ADS) Generate scripts for top 2 comments from SECOND pinned post
+    # Generate scripts for the advertisements
     script_ads = []
     for advert in adverts:
-        script_ad = open_ai_stuff.generate_response(
+        script_ad = llmOS_stuff.generate_response(
             podcast_ads.SYSTEM_PROMPT, podcast_ads.PROMPT.format(product=advert)
         )
         script_ads.append(script_ad)
 
     # Generate an intro for the generated material
-    intro = open_ai_stuff.generate_response(
+    intro = llmOS_stuff.generate_response(
         podcast_intro.SYSTEM_PROMPT,
         podcast_intro.PROMPT.format(
             segment_1=script_segments[0],
@@ -50,7 +48,7 @@ def gencast(openai_api, elevenlabs_api, name, desc, topics, adverts):
         ),
     )
 
-    segue_1 = open_ai_stuff.generate_response(
+    segue_1 = llmOS_stuff.generate_response(
         podcast_segue.SYSTEM_PROMPT,
         podcast_segue.PROMPT.format(
             count_descriptor="first",
@@ -58,7 +56,7 @@ def gencast(openai_api, elevenlabs_api, name, desc, topics, adverts):
         ),
     )
 
-    segue_2 = open_ai_stuff.generate_response(
+    segue_2 = llmOS_stuff.generate_response(
         podcast_segue.SYSTEM_PROMPT,
         podcast_segue.PROMPT.format(
             count_descriptor="second",
@@ -66,7 +64,7 @@ def gencast(openai_api, elevenlabs_api, name, desc, topics, adverts):
         ),
     )
 
-    segue_3 = open_ai_stuff.generate_response(
+    segue_3 = llmOS_stuff.generate_response(
         podcast_segue.SYSTEM_PROMPT,
         podcast_segue.PROMPT.format(
             count_descriptor="third",
@@ -74,7 +72,7 @@ def gencast(openai_api, elevenlabs_api, name, desc, topics, adverts):
         ),
     )
 
-    outro = open_ai_stuff.generate_response(
+    outro = llmOS_stuff.generate_response(
         podcast_outro.SYSTEM_PROMPT,
         podcast_outro.PROMPT.format(
             segment_1=script_segments[0],
@@ -87,7 +85,7 @@ def gencast(openai_api, elevenlabs_api, name, desc, topics, adverts):
         ),
     )
 
-    output_dir = "server/downloads/"
+    output_dir = "app/downloads/"
 
     # Write the script to a file
     output_file = f"{output_dir}{current_date}_{unique_id}.txt"
@@ -167,7 +165,7 @@ def gencast(openai_api, elevenlabs_api, name, desc, topics, adverts):
     music_feriado = music_feriado[: 6 * _SECOND].fade_out(2 * _SECOND)
     music_typewriter = music_typewriter[: 6 * _SECOND].fade_out(2 * _SECOND)
 
-    # Stitch together podcast
+    # Stitch the podcast together
     podcast = music_forest.overlay(intro_audio[:_SECOND], position=5 * _SECOND)
     podcast += intro_audio[_SECOND:]  # Add remaining part of intro_audio
     podcast += AudioSegment.silent(duration=1 * _SECOND)
@@ -199,5 +197,5 @@ def gencast(openai_api, elevenlabs_api, name, desc, topics, adverts):
 
     # Zip the script and audio file
     shutil.make_archive(
-        "server/kyms-output", "zip", root_dir="server/", base_dir="downloads"
+        "app/kyms-output", "zip", root_dir="server/", base_dir="downloads"
     )
