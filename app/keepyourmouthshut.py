@@ -2,9 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from gencast import (
-    gencast,
-)  # Assuming you have a gencast module with the gencast function
+from generate_podcast import gencast
 
 app = FastAPI()
 
@@ -19,7 +17,6 @@ app.add_middleware(
 
 
 class InputData(BaseModel):
-    openai_api_key: str
     elevenlabs_api_key: str
     name: str
     desc: str
@@ -36,7 +33,6 @@ async def process_data(data: InputData):
         topics = [data.topic1, data.topic2, data.topic3]
         adverts = [data.advert1, data.advert2]
         gencast(
-            data.openai_api_key,
             data.elevenlabs_api_key,
             data.name,
             data.desc,

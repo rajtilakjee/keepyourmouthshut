@@ -1,7 +1,5 @@
 import uuid
-from elevenlabs import set_api_key
 from pydub import AudioSegment
-import shutil
 
 from prompts import (
     podcast_ads,
@@ -10,13 +8,12 @@ from prompts import (
     podcast_segment,
     podcast_segue,
 )
-from utils import date_stuff, eleven_labs_stuff, string_stuff, llmOS_stuff
+from utils import date_stuff, edge_tts_stuff, string_stuff, llmOS_stuff
 
 _SECOND = 1000
 
 
-def gencast(elevenlabs_api, name, desc, topics, adverts):
-    set_api_key(elevenlabs_api)
+def gencast(name, desc, topics, adverts):
     current_date = date_stuff.get_tomorrows_date_for_file_names()
     unique_id = uuid.uuid4()
 
@@ -118,36 +115,16 @@ def gencast(elevenlabs_api, name, desc, topics, adverts):
         )
 
     # Use elevenlabs to generate the MP3s
-    intro_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=intro, voice=eleven_labs_stuff.HOST_VOICE
-    )
-    segue_1_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=segue_1, voice=eleven_labs_stuff.HOST_VOICE
-    )
-    segue_2_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=segue_2, voice=eleven_labs_stuff.HOST_VOICE
-    )
-    segue_3_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=segue_3, voice=eleven_labs_stuff.HOST_VOICE
-    )
-    segment_1_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=script_segments[0], voice=eleven_labs_stuff.HOST_VOICE
-    )
-    segment_2_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=script_segments[1], voice=eleven_labs_stuff.HOST_VOICE
-    )
-    segment_3_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=script_segments[2], voice=eleven_labs_stuff.HOST_VOICE
-    )
-    ad_1_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=script_ads[0], voice=eleven_labs_stuff.ADS_VOICE
-    )
-    ad_2_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=script_ads[1], voice=eleven_labs_stuff.ADS_VOICE
-    )
-    outro_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=outro, voice=eleven_labs_stuff.HOST_VOICE
-    )
+    intro_audio = edge_tts_stuff.convert_text_to_mp3(text=intro)
+    segue_1_audio = edge_tts_stuff.convert_text_to_mp3(text=segue_1)
+    segue_2_audio = edge_tts_stuff.convert_text_to_mp3(text=segue_2)
+    segue_3_audio = edge_tts_stuff.convert_text_to_mp3(text=segue_3)
+    segment_1_audio = edge_tts_stuff.convert_text_to_mp3(text=script_segments[0])
+    segment_2_audio = edge_tts_stuff.convert_text_to_mp3(text=script_segments[1])
+    segment_3_audio = edge_tts_stuff.convert_text_to_mp3(text=script_segments[2])
+    ad_1_audio = edge_tts_stuff.convert_text_to_mp3(text=script_ads[0])
+    ad_2_audio = edge_tts_stuff.convert_text_to_mp3(text=script_ads[1])
+    outro_audio = edge_tts_stuff.convert_text_to_mp3(text=outro)
 
     # Load music segments
     music_forest = AudioSegment.from_mp3("server/music/whistle-vibes-172471.mp3")
@@ -195,7 +172,21 @@ def gencast(elevenlabs_api, name, desc, topics, adverts):
     output_file = f"{output_dir}{current_date}_{unique_id}.mp3"
     podcast.export(output_file, format="mp3")
 
-    # Zip the script and audio file
-    shutil.make_archive(
-        "app/kyms-output", "zip", root_dir="server/", base_dir="downloads"
-    )
+
+def main():
+    name = input("Enter name of podcast: ")
+    desc = input("Enter description of podcast: ")
+    topic1 = input("Enter first topic: ")
+    topic2 = input("Enter second topic: ")
+    topic3 = input("Enter third topic: ")
+    advert1 = input("Enter first advert: ")
+    advert2 = input("Enter second advert: ")
+
+    topic = [topic1, topic2, topic3]
+    advert = [advert1, advert2]
+
+    gencast(name, desc, topic, advert)
+
+
+if __name__ == "__main__":
+    main()
