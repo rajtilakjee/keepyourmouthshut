@@ -115,25 +115,36 @@ def gencast(name, desc, topics, adverts):
         )
 
     # Use elevenlabs to generate the MP3s
-    intro_audio = edge_tts_stuff.convert_text_to_mp3(text=intro)
-    segue_1_audio = edge_tts_stuff.convert_text_to_mp3(text=segue_1)
-    segue_2_audio = edge_tts_stuff.convert_text_to_mp3(text=segue_2)
-    segue_3_audio = edge_tts_stuff.convert_text_to_mp3(text=segue_3)
-    segment_1_audio = edge_tts_stuff.convert_text_to_mp3(text=script_segments[0])
-    segment_2_audio = edge_tts_stuff.convert_text_to_mp3(text=script_segments[1])
-    segment_3_audio = edge_tts_stuff.convert_text_to_mp3(text=script_segments[2])
-    ad_1_audio = edge_tts_stuff.convert_text_to_mp3(text=script_ads[0])
-    ad_2_audio = edge_tts_stuff.convert_text_to_mp3(text=script_ads[1])
-    outro_audio = edge_tts_stuff.convert_text_to_mp3(text=outro)
+    cache_dir = "app/cache/"
+    edge_tts_stuff.convert_text_to_mp3(text=intro, filename="intro")
+    intro_audio = cache_dir + "intro.mp3"
+    edge_tts_stuff.convert_text_to_mp3(text=segue_1, filename="segue_1")
+    segue_1_audio = cache_dir + "segue_1.mp3"
+    edge_tts_stuff.convert_text_to_mp3(text=segue_2, filename="segue_2")
+    segue_2_audio = cache_dir + "segue_2.mp3"
+    edge_tts_stuff.convert_text_to_mp3(text=segue_3, filename="segue_3")
+    segue_3_audio = cache_dir + "segue_3.mp3"
+    edge_tts_stuff.convert_text_to_mp3(text=script_segments[0], filename="segment_1")
+    segment_1_audio = cache_dir + "segment_1.mp3"
+    edge_tts_stuff.convert_text_to_mp3(text=script_segments[1], filename="segment_2")
+    segment_2_audio = cache_dir + "segment_2.mp3"
+    edge_tts_stuff.convert_text_to_mp3(text=script_segments[2], filename="segment_3")
+    segment_3_audio = cache_dir + "segment_3.mp3"
+    edge_tts_stuff.convert_text_to_mp3(text=script_ads[0], filename="advert_1")
+    ad_1_audio = cache_dir + "advert_1.mp3"
+    edge_tts_stuff.convert_text_to_mp3(text=script_ads[1], filename="advert_2")
+    ad_2_audio = cache_dir + "advert_2.mp3"
+    edge_tts_stuff.convert_text_to_mp3(text=outro, filename="outro")
+    outro_audio = cache_dir + "outro.mp3"
 
     # Load music segments
-    music_forest = AudioSegment.from_mp3("server/music/whistle-vibes-172471.mp3")
+    music_forest = AudioSegment.from_mp3("app/music/whistle-vibes-172471.mp3")
     music_beachside = AudioSegment.from_mp3(
-        "server/music/lofi-chill-medium-version-159456.mp3"
+        "app/music/lofi-chill-medium-version-159456.mp3"
     )
-    music_feriado = AudioSegment.from_mp3("server/music/bolero-161191.mp3")
+    music_feriado = AudioSegment.from_mp3("app/music/bolero-161191.mp3")
     music_typewriter = AudioSegment.from_mp3(
-        "server/music/scandinavianz-thessaloniki-free-download-173689.mp3"
+        "app/music/scandinavianz-thessaloniki-free-download-173689.mp3"
     )
 
     # Trim and apply fade outs to music segments
