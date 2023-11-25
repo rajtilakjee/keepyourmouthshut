@@ -1,16 +1,15 @@
 import asyncio
-import edge_tts as et
+import edge_tts
 
 VOICE = "en-GB-SoniaNeural"
 
 
-def convert_text_to_mp3(text, filename):
-    async def wrapper():
-        c = et.Communicate(text, VOICE)
-        await c.save("app/cache/" + filename + ".mp3")
+async def converter(text, filename):
+    audio_segment = edge_tts.Communicate(text, VOICE)
+    await audio_segment.save("app/cache/" + filename)
 
+
+def convert_text_to_mp3(text, filename):
     loop = asyncio.get_event_loop_policy().get_event_loop()
-    try:
-        loop.run_until_complete(wrapper())
-    finally:
-        loop.close()
+    audio_segment = loop.run_until_complete(converter(text, filename))
+    return audio_segment

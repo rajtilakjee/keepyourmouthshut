@@ -116,26 +116,32 @@ def gencast(name, desc, topics, adverts):
 
     # Use elevenlabs to generate the MP3s
     cache_dir = "app/cache/"
-    edge_tts_stuff.convert_text_to_mp3(text=intro, filename="intro")
-    intro_audio = cache_dir + "intro.mp3"
-    edge_tts_stuff.convert_text_to_mp3(text=segue_1, filename="segue_1")
-    segue_1_audio = cache_dir + "segue_1.mp3"
-    edge_tts_stuff.convert_text_to_mp3(text=segue_2, filename="segue_2")
-    segue_2_audio = cache_dir + "segue_2.mp3"
-    edge_tts_stuff.convert_text_to_mp3(text=segue_3, filename="segue_3")
-    segue_3_audio = cache_dir + "segue_3.mp3"
-    edge_tts_stuff.convert_text_to_mp3(text=script_segments[0], filename="segment_1")
-    segment_1_audio = cache_dir + "segment_1.mp3"
-    edge_tts_stuff.convert_text_to_mp3(text=script_segments[1], filename="segment_2")
-    segment_2_audio = cache_dir + "segment_2.mp3"
-    edge_tts_stuff.convert_text_to_mp3(text=script_segments[2], filename="segment_3")
-    segment_3_audio = cache_dir + "segment_3.mp3"
-    edge_tts_stuff.convert_text_to_mp3(text=script_ads[0], filename="advert_1")
-    ad_1_audio = cache_dir + "advert_1.mp3"
-    edge_tts_stuff.convert_text_to_mp3(text=script_ads[1], filename="advert_2")
-    ad_2_audio = cache_dir + "advert_2.mp3"
-    edge_tts_stuff.convert_text_to_mp3(text=outro, filename="outro")
-    outro_audio = cache_dir + "outro.mp3"
+    edge_tts_stuff.convert_text_to_mp3(text=intro, filename="intro.mp3")
+    intro_audio = AudioSegment.from_mp3(cache_dir + "intro.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=segue_1, filename="segue_1.mp3")
+    segue_1_audio = AudioSegment.from_mp3(cache_dir + "segue_1.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=segue_2, filename="segue_2.mp3")
+    segue_2_audio = AudioSegment.from_mp3(cache_dir + "segue_2.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=segue_3, filename="segue_3.mp3")
+    segue_3_audio = AudioSegment.from_mp3(cache_dir + "segue_3.mp3")
+    edge_tts_stuff.convert_text_to_mp3(
+        text=script_segments[0], filename="segment_1.mp3"
+    )
+    segment_1_audio = AudioSegment.from_mp3(cache_dir + "segment_1.mp3")
+    edge_tts_stuff.convert_text_to_mp3(
+        text=script_segments[1], filename="segment_2.mp3"
+    )
+    segment_2_audio = AudioSegment.from_mp3(cache_dir + "segment_2.mp3")
+    edge_tts_stuff.convert_text_to_mp3(
+        text=script_segments[2], filename="segment_3.mp3"
+    )
+    segment_3_audio = AudioSegment.from_mp3(cache_dir + "segment_3.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=script_ads[0], filename="advert_1.mp3")
+    ad_1_audio = AudioSegment.from_mp3(cache_dir + "advert_1.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=script_ads[1], filename="advert_2.mp3")
+    ad_2_audio = AudioSegment.from_mp3(cache_dir + "advert_2.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=outro, filename="outro.mp3")
+    outro_audio = AudioSegment.from_mp3(cache_dir + "outro.mp3")
 
     # Load music segments
     music_forest = AudioSegment.from_mp3("app/music/whistle-vibes-172471.mp3")
@@ -182,16 +188,17 @@ def gencast(name, desc, topics, adverts):
     # Export the final audio file
     output_file = f"{output_dir}{current_date}_{unique_id}.mp3"
     podcast.export(output_file, format="mp3")
+    print("Complete")
 
 
 def main():
-    name = input("Enter name of podcast: ")
-    desc = input("Enter description of podcast: ")
-    topic1 = input("Enter first topic: ")
-    topic2 = input("Enter second topic: ")
-    topic3 = input("Enter third topic: ")
-    advert1 = input("Enter first advert: ")
-    advert2 = input("Enter second advert: ")
+    name = "Listenology"
+    desc = "AI-assisted podcast"
+    topic1 = "TV Shows that have been cancelled but then returned years later due to overwhelming fan demand. For example, Futurama, Arrested Development, or The Expanse. "
+    topic2 = "When and why were the top 10 largest crowds ever recorded formed?"
+    topic3 = "Next weeks episode should have a segment on the dark conspiracy theories surrounding the Great British Bake-off."
+    advert1 = "Bacon floss, bacon flavored floss that is also kinda greasy. Now available in low sodium"
+    advert2 = "A 5 star luxury hotel, but you have to share your room with strangers."
 
     topic = [topic1, topic2, topic3]
     advert = [advert1, advert2]
