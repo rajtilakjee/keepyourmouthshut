@@ -1,7 +1,5 @@
 import uuid
-from elevenlabs import set_api_key
 from pydub import AudioSegment
-import shutil
 
 from prompts import (
     podcast_ads,
@@ -10,13 +8,12 @@ from prompts import (
     podcast_segment,
     podcast_segue,
 )
-from utils import date_stuff, eleven_labs_stuff, string_stuff, llmOS_stuff
+from utils import date_stuff, edge_tts_stuff, string_stuff, llmOS_stuff
 
 _SECOND = 1000
 
 
-def gencast(elevenlabs_api, name, desc, topics, adverts):
-    set_api_key(elevenlabs_api)
+def gencast(name, desc, topics, adverts):
     current_date = date_stuff.get_tomorrows_date_for_file_names()
     unique_id = uuid.uuid4()
 
@@ -118,45 +115,42 @@ def gencast(elevenlabs_api, name, desc, topics, adverts):
         )
 
     # Use elevenlabs to generate the MP3s
-    intro_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=intro, voice=eleven_labs_stuff.HOST_VOICE
+    cache_dir = "app/cache/"
+    edge_tts_stuff.convert_text_to_mp3(text=intro, filename="intro.mp3")
+    intro_audio = AudioSegment.from_mp3(cache_dir + "intro.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=segue_1, filename="segue_1.mp3")
+    segue_1_audio = AudioSegment.from_mp3(cache_dir + "segue_1.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=segue_2, filename="segue_2.mp3")
+    segue_2_audio = AudioSegment.from_mp3(cache_dir + "segue_2.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=segue_3, filename="segue_3.mp3")
+    segue_3_audio = AudioSegment.from_mp3(cache_dir + "segue_3.mp3")
+    edge_tts_stuff.convert_text_to_mp3(
+        text=script_segments[0], filename="segment_1.mp3"
     )
-    segue_1_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=segue_1, voice=eleven_labs_stuff.HOST_VOICE
+    segment_1_audio = AudioSegment.from_mp3(cache_dir + "segment_1.mp3")
+    edge_tts_stuff.convert_text_to_mp3(
+        text=script_segments[1], filename="segment_2.mp3"
     )
-    segue_2_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=segue_2, voice=eleven_labs_stuff.HOST_VOICE
+    segment_2_audio = AudioSegment.from_mp3(cache_dir + "segment_2.mp3")
+    edge_tts_stuff.convert_text_to_mp3(
+        text=script_segments[2], filename="segment_3.mp3"
     )
-    segue_3_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=segue_3, voice=eleven_labs_stuff.HOST_VOICE
-    )
-    segment_1_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=script_segments[0], voice=eleven_labs_stuff.HOST_VOICE
-    )
-    segment_2_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=script_segments[1], voice=eleven_labs_stuff.HOST_VOICE
-    )
-    segment_3_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=script_segments[2], voice=eleven_labs_stuff.HOST_VOICE
-    )
-    ad_1_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=script_ads[0], voice=eleven_labs_stuff.ADS_VOICE
-    )
-    ad_2_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=script_ads[1], voice=eleven_labs_stuff.ADS_VOICE
-    )
-    outro_audio = eleven_labs_stuff.convert_text_to_mp3(
-        text=outro, voice=eleven_labs_stuff.HOST_VOICE
-    )
+    segment_3_audio = AudioSegment.from_mp3(cache_dir + "segment_3.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=script_ads[0], filename="advert_1.mp3")
+    ad_1_audio = AudioSegment.from_mp3(cache_dir + "advert_1.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=script_ads[1], filename="advert_2.mp3")
+    ad_2_audio = AudioSegment.from_mp3(cache_dir + "advert_2.mp3")
+    edge_tts_stuff.convert_text_to_mp3(text=outro, filename="outro.mp3")
+    outro_audio = AudioSegment.from_mp3(cache_dir + "outro.mp3")
 
     # Load music segments
-    music_forest = AudioSegment.from_mp3("server/music/whistle-vibes-172471.mp3")
+    music_forest = AudioSegment.from_mp3("app/music/whistle-vibes-172471.mp3")
     music_beachside = AudioSegment.from_mp3(
-        "server/music/lofi-chill-medium-version-159456.mp3"
+        "app/music/lofi-chill-medium-version-159456.mp3"
     )
-    music_feriado = AudioSegment.from_mp3("server/music/bolero-161191.mp3")
+    music_feriado = AudioSegment.from_mp3("app/music/bolero-161191.mp3")
     music_typewriter = AudioSegment.from_mp3(
-        "server/music/scandinavianz-thessaloniki-free-download-173689.mp3"
+        "app/music/scandinavianz-thessaloniki-free-download-173689.mp3"
     )
 
     # Trim and apply fade outs to music segments
@@ -194,8 +188,23 @@ def gencast(elevenlabs_api, name, desc, topics, adverts):
     # Export the final audio file
     output_file = f"{output_dir}{current_date}_{unique_id}.mp3"
     podcast.export(output_file, format="mp3")
+    print("Complete")
 
-    # Zip the script and audio file
-    shutil.make_archive(
-        "app/kyms-output", "zip", root_dir="server/", base_dir="downloads"
-    )
+
+def main():
+    name = "Listenology"
+    desc = "AI-assisted podcast"
+    topic1 = "TV Shows that have been cancelled but then returned years later due to overwhelming fan demand. For example, Futurama, Arrested Development, or The Expanse. "
+    topic2 = "When and why were the top 10 largest crowds ever recorded formed?"
+    topic3 = "Next weeks episode should have a segment on the dark conspiracy theories surrounding the Great British Bake-off."
+    advert1 = "Bacon floss, bacon flavored floss that is also kinda greasy. Now available in low sodium"
+    advert2 = "A 5 star luxury hotel, but you have to share your room with strangers."
+
+    topic = [topic1, topic2, topic3]
+    advert = [advert1, advert2]
+
+    gencast(name, desc, topic, advert)
+
+
+if __name__ == "__main__":
+    main()
