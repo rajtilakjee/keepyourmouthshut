@@ -1,8 +1,8 @@
-pre-commit
-shutils
-pydub
-PyYAML
-python-dotenv
-requests
-asyncio
-edge_tts
+asyncio==3.4.3
+edge_tts==6.1.9
+pre-commit==3.5.0
+pydub==0.25.1
+python-dotenv==1.0.0
+PyYAML==6.0.1
+requests==2.31.0
+shutils==0.1.0
