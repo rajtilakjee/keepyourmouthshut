@@ -8,16 +8,17 @@ KeepYourMouthShut is an AI-assisted, 360-degree podcast solution API. It has a d
 
 ## Table of Content
 
-- [Table of Content](#table-of-content)
-- [Installation](#installation)
-- [Running the Tests](#running-the-tests)
-- [Deployment](#deployment)
-- [Built With](#built-with)
-- [Contributing](#contributing)
-- [Versioning](#versioning)
-- [Inspiration](#inspiration)
-- [License](#license)
-- [Citation](#citation)
+- [KeepYourMouthShut - Acid Reflux for your Ears!](#keepyourmouthshut---acid-reflux-for-your-ears)
+  - [Table of Content](#table-of-content)
+  - [Installation](#installation)
+  - [Running the Tests](#running-the-tests)
+  - [Deployment](#deployment)
+  - [Built With](#built-with)
+  - [Contributing](#contributing)
+  - [Versioning](#versioning)
+  - [Inspiration](#inspiration)
+  - [License](#license)
+  - [Citation](#citation)
 
 ## Installation
 
@@ -35,7 +36,7 @@ TBD
 
 - [Python](https://www.python.org/)
 - [llmOS](https://www.llmos.dev/)
-- [ElevenLabs](https://elevenlabs.io/)
+- [edge-tts](https://github.com/rany2/edge-tts)
 
 ## Contributing
 
