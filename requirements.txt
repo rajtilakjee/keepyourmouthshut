@@ -6,3 +6,4 @@ python-dotenv
 requests
 asyncio
 edge_tts
+supabase
