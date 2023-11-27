@@ -1,5 +1,4 @@
 <!-- omit in toc -->
-
 # KeepYourMouthShut - Acid Reflux for your Ears!
 
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/rajtilakjee/keepyourmouthshut) &nbsp; ![GitHub License](https://img.shields.io/github/license/rajtilakjee/keepyourmouthshut) &nbsp; ![GitHub Repo stars](https://img.shields.io/github/stars/rajtilakjee/keepyourmouthshut) &nbsp; ![GitHub forks](https://img.shields.io/github/forks/rajtilakjee/keepyourmouthshut) &nbsp; ![GitHub repo size](https://img.shields.io/github/repo-size/rajtilakjee/keepyourmouthshut)
@@ -8,17 +7,16 @@ KeepYourMouthShut is an AI-assisted, 360-degree podcast solution API. It has a d
 
 ## Table of Content
 
-- [KeepYourMouthShut - Acid Reflux for your Ears!](#keepyourmouthshut---acid-reflux-for-your-ears)
-  - [Table of Content](#table-of-content)
-  - [Installation](#installation)
-  - [Running the Tests](#running-the-tests)
-  - [Deployment](#deployment)
-  - [Built With](#built-with)
-  - [Contributing](#contributing)
-  - [Versioning](#versioning)
-  - [Inspiration](#inspiration)
-  - [License](#license)
-  - [Citation](#citation)
+- [Table of Content](#table-of-content)
+- [Installation](#installation)
+- [Running the Tests](#running-the-tests)
+- [Deployment](#deployment)
+- [Built With](#built-with)
+- [Contributing](#contributing)
+- [Versioning](#versioning)
+- [Inspiration](#inspiration)
+- [License](#license)
+- [Citation](#citation)
 
 ## Installation
 

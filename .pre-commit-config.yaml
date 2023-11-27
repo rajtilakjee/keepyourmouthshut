@@ -25,15 +25,6 @@ repos:
           - python
         args: ["--max-line-length=1000", "--ignore=E203, E999"]
 
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.3
-    hooks:
-      - id: prettier # An opinionated code formatter supporting multiple languages.
-        name: prettier
-        types_or:
-          - yaml
-          - markdown
-
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
     rev: v0.1.6
