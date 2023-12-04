@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, send_file
 import os
-import shutil
+import zipfile
 from generate_podcast import generate_podcast
 
 app = Flask(__name__)
@@ -25,15 +25,30 @@ def generate():
     adverts = [advert1, advert2]
 
     # Generate the podcast
-    generate_podcast(name, desc, topics, adverts)
+    mp3_file, txt_file = generate_podcast(name, desc, topics, adverts)
 
-    # Create a zip file
-    zip_filename = f"{name}_podcast.zip"
-    zip_folder = "app/downloads/"
-    shutil.make_archive(os.path.join(zip_folder, name), "zip", zip_folder)
+    # Set the working directory to the script's directory
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(script_directory)
 
-    return send_file(zip_filename, as_attachment=True)
+    # Use relative paths for the files, assuming the script is in the 'app' directory
+    mp3_file = os.path.join(".", "downloads", mp3_file)
+    txt_file = os.path.join(".", "downloads", txt_file)
+
+    zip_folder = os.path.join(".", "downloads")
+    zip_filename = f"{zip_folder}/{name}_podcast.zip"
+
+    # Ensure the output directory exists
+    os.makedirs(zip_folder, exist_ok=True)
+
+    # Zip the two files
+    with zipfile.ZipFile(zip_filename, "w") as zip_file:
+        zip_file.write(mp3_file, arcname=os.path.basename(mp3_file))
+        zip_file.write(txt_file, arcname=os.path.basename(txt_file))
+
+    # Send the zip file to the user for download
+    return send_file(f"./downloads/{name}_podcast.zip", as_attachment=True)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=64215, debug=True)

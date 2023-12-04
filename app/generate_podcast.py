@@ -113,6 +113,7 @@ def generate_podcast(name, desc, topics, adverts):
                 ]
             )
         )
+    script_file = f"{current_date}_{unique_id}.txt"
 
     # Use elevenlabs to generate the MP3s
     cache_dir = "app/cache/"
@@ -188,3 +189,7 @@ def generate_podcast(name, desc, topics, adverts):
     # Export the final audio file
     output_file = f"{output_dir}{current_date}_{unique_id}.mp3"
     podcast.export(output_file, format="mp3")
+
+    audio_file = f"{current_date}_{unique_id}.mp3"
+
+    return audio_file, script_file
