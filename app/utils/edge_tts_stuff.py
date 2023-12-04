@@ -10,6 +10,10 @@ async def converter(text, filename):
 
 
 def convert_text_to_mp3(text, filename):
-    loop = asyncio.get_event_loop_policy().get_event_loop()
-    audio_segment = loop.run_until_complete(converter(text, filename))
-    return audio_segment
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
+    try:
+        loop.run_until_complete(converter(text, filename))
+    finally:
+        loop.close()
