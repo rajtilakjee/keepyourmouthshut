@@ -3,26 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KeepYourMouthShut - Acid Reflux for your Ears!">
+    <meta name="keywords" content="podcast, audio, topics, adverts, KeepYourMouthShut">
+    <meta name="author" content="Rajtilak Bhattacharjee">
+
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='kyms-logo.png') }}" sizes="32x32">
+
     <title>KeepYourMouthShut</title>
+    <!-- Add this to the style section -->
+    <style>
+        body {
+            background: linear-gradient(to right, #2d3748, #6b46c1, #2d3748);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .logo {
+            width: 130px; /* Adjust the width as needed */
+            height: 130px; /* Adjust the height as needed */
+            margin: 0; /* Set margin to zero */
+            position: fixed; /* Optional: Remove from the document flow */
+            top: 0;
+            left: 0;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.5rem;
+        }
+
+        .tabs a {
+            text-decoration: none;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #6b46c1;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .tabs a:hover {
+            background-color: #ddd;
+        }
+
+        .tabs a.active {
+            background-color: #6b46c1;
+            color: white;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        label {
+            color: #333; /* Set the color to your preferred text color */
+            display: block;
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+            text-align: start;
+        }
+
+        h1, h3, p {
+            color: #333; /* Set the color to your preferred text color */
+        }
+
+        textarea {
+            width: calc(100% - 1rem);
+            padding: 0.5rem;
+            border-color: #6b46c1;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #6b46c1; /* Set the background color to match the purple background */
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .footer {
+            color: white;
+            margin-top: 1rem; /* Adjust the margin as needed */
+            position: absolute;
+            left: 2rem; /* Adjust the left position as needed */
+            bottom: 2rem; /* Adjust the bottom position as needed */
+        }
+
+        /* Additional style for the footer links */
+        .footer {
+        color: white;
+        margin-top: 1rem; /* Adjust the margin as needed */
+        position: absolute;
+        right: 2rem; /* Align to the right side */
+        bottom: 2rem; /* Adjust the bottom position as needed */
+        }
+
+        /* Additional style for the footer links */
+        .footer a {
+            color: white;
+            margin-right: 1rem; /* Adjust the margin between links as needed */
+            text-decoration: none;
+            content: '\00a0-\00a0';
+        }
+
+    </style>
+
 </head>
 <body>
-    <h1>KeepYourMouthShut</h1>
-    <form action="/generate" method="post">
-        <label for="name">Podcast Name:</label>
-        <input type="text" name="name" required><br>
-        <label for="desc">Podcast Description:</label>
-        <textarea name="desc" required></textarea><br>
-        <label for="topic1">Topic 1:</label>
-        <textarea name="topic1" required></textarea><br>
-        <label for="topic2">Topic 2:</label>
-        <textarea name="topic2" required></textarea><br>
-        <label for="topic3">Topic 3:</label>
-        <textarea name="topic3" required></textarea><br>
-        <label for="advert1">Advert 1:</label>
-        <textarea name="advert1" required></textarea><br>
-        <label for="advert2">Advert 2:</label>
-        <textarea name="advert2" required></textarea><br>
-        <input type="submit" value="Generate Podcast">
-    </form>
+
+    <div class="container">
+        <!-- Logo -->
+        <div class="text-center mb-4">
+            <img src="{{ url_for('static', filename='kyms-logo.png') }}" alt="Logo" class="logo">
+            <h1 class="text-xl font-bold">KeepYourMouthShut</h1>
+            <h3 class="text-sm">Acid Reflux for your Ears!</h3>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <a href="#" onclick="showTab('description')">Description</a>
+            <a href="#" onclick="showTab('topics')">Topics</a>
+            <a href="#" onclick="showTab('adverts')">Adverts</a>
+        </div>
+
+        <!-- Form -->
+        <form action="/generate" method="post">
+            <!-- Description Tab -->
+            <div id="description" class="tab active">
+                <label for="name">Podcast Name:</label>
+                <textarea type="text" name="name" required></textarea>
+                <label for="desc">Podcast Description:</label>
+                <textarea name="desc" required></textarea>
+            </div>
+
+            <!-- Topics Tab -->
+            <div id="topics" class="tab">
+                <label for="topic1">Topic 1:</label>
+                <textarea name="topic1" required></textarea><br>
+                <label for="topic2">Topic 2:</label>
+                <textarea name="topic2" required></textarea><br>
+                <label for="topic3">Topic 3:</label>
+                <textarea name="topic3" required></textarea>
+            </div>
+
+            <!-- Adverts Tab -->
+            <div id="adverts" class="tab">
+                <label for="advert1">Advert 1:</label>
+                <textarea name="advert1" required></textarea><br>
+                <label for="advert2">Advert 2:</label>
+                <textarea name="advert2" required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <input type="submit" value="Generate Podcast">
+        </form>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show the selected tab
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+        }
+    </script>
+
+    <div class="footer">
+        <a href="https://docs.keepyourmouthshut.net/" target="_blank">Documentation</a>
+        <a href="https://github.com/rajtilakjee/keepyourmouthshut/blob/main/LICENSE" target="_blank">License</a>
+        <a href="https://github.com/rajtilakjee/keepyourmouthshut" target="_blank">GitHub</a>
+        <a href="https://discord.gg/QFUmaE284H" target="_blank">Discord</a>
+        <br><br>
+        Copyright &copy; 2023 - Rajtilak Bhattacharjee
+        <br>
+        Made with ❤️ by Rajtilak Bhattacharjee
+        <br>
+    </div>
 </body>
 </html>
