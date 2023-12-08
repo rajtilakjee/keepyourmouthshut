@@ -1,0 +1,10 @@
+{
+    "production": {
+        "app_function": "app.keepyourmouthshut.app",
+        "profile_name": "default",
+        "project_name": "keepyourmouthsh",
+        "runtime": "python3.11",
+        "s3_bucket": "zappa-93lqg9n3z",
+        "aws_region": "us-east-1"
+    }
+}
