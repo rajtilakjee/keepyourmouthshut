@@ -48,7 +48,3 @@ def generate():
 
     # Send the zip file to the user for download
     return send_file(f"./downloads/{name}_podcast.zip", as_attachment=True)
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=64215, debug=True)
