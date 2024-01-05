@@ -13,7 +13,7 @@ Do not include [music fades in], [music fades out], Host:, and similar cues in t
 PROMPT = """
 Write an intro for a podcast called {podcast_name} -- which is {podcast_desc}.
 
-The intro should introduce the podcast, and a very brief summary of the 3 segments that will be covered in the show. Don't give away too much of the segments, most of it should be hidden to maintain the user's interest and give them a reason to keep listening.
+The intro should introduce the podcast, and a very brief summary of the 3 segments that will be covered in the show in 3 short lines for each segmets. Don't give away too much of the segments, most of it should be hidden to maintain the user's interest and give them a reason to keep listening.
 
 Do not include [music fades in], [music fades out], Host:, and similar cues in the script. Write in straightforward text, not in script format.
 

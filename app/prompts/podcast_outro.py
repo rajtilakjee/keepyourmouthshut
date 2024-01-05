@@ -11,13 +11,11 @@ Do not include [music fades in], [music fades out], Host:, and similar cues in t
 """
 
 PROMPT = """
-Write an outro for a podcast called {podcast_name} -- which is {podcast_desc}. One ad have also been submitted, so give attribution to the ad submitter as well. Thank them because they are the sponsors, and they make this all possible.
+Write an outro for a podcast called {podcast_name}. Two ads have also been submitted, so give attribution to the ad submitter as well. Thank them because they are the sponsors, and they make this all possible.
 
 The basic gist of the outro should be like "That's it for today, thanks for listening!" while keeping it short and simple.
 
 End the outro with some sort of - "Be sure to check out website for more info, and see you next time on {podcast_name}!"
-
-Do not include [music fades in], [music fades out], Host:, and similar cues in the script. Write in straightforward text, not in script format.
 
 On today's podcast the segments were:
 
