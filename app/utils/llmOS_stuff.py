@@ -1,10 +1,9 @@
 import requests
-import os
-from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
+# load_dotenv()
 
-llmos_api_key = os.getenv("llmOS_API_KEY")
+llmos_api_key = st.secrets["llmOS_API_KEY"]
 
 url = "https://api.llmos.dev/v1/chat/completions"
 
