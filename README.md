@@ -3,58 +3,72 @@
 
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/rajtilakjee/keepyourmouthshut) &nbsp; ![GitHub License](https://img.shields.io/github/license/rajtilakjee/keepyourmouthshut) &nbsp; ![GitHub Repo stars](https://img.shields.io/github/stars/rajtilakjee/keepyourmouthshut) &nbsp; ![GitHub forks](https://img.shields.io/github/forks/rajtilakjee/keepyourmouthshut) &nbsp; ![GitHub repo size](https://img.shields.io/github/repo-size/rajtilakjee/keepyourmouthshut)
 
-** Please consider sponsoring this project to help keep it alive! **
+_[Please consider sponsoring this project to help keep it alive!]_
 
-KeepYourMouthShut is an AI-assisted, 360-degree podcast solution API. It has a developer-first approach for creating entire episodes of podcasts without requiring any expensive equpment or setup. The API takes a number of input from the end-user and based on that generates a script and an audio voice-over file based on that script.
+KeepYourMouthShut is an AI-assisted open-source app that provides a 360-degree podcast solution 🎙️ It has a developer-first approach for creating entire episodes of podcasts without requiring any expensive equpment or setup. The app takes a number of input from the end-user and based on that generates a script and an audio voice-over file based on that script.
 
 <!-- omit in toc -->
 ## Table of Content
 
-- [Installation](#installation)
-- [Running the Tests](#running-the-tests)
-- [Deployment](#deployment)
-- [Built With](#built-with)
-- [Contributing](#contributing)
-- [Versioning](#versioning)
-- [Inspiration](#inspiration)
-- [License](#license)
-- [Citation](#citation)
+- [🚀 Installation](#-installation)
+- [⚠️ Deployment](#️-deployment)
+- [🛠️ Built With](#️-built-with)
+- [🎸 Music](#-music)
+- [🚸 Contributing](#-contributing)
+- [🪫 Versioning](#-versioning)
+- [🏅 Acknowledgement](#-acknowledgement)
+- [🕹️ License](#️-license)
+- [📟 Citation](#-citation)
 
-## Installation
+## 🚀 Installation
 
-TBD
+For local installation, clone the repository and run the following commands:
 
-## Running the Tests
+1. `pip install -r requirements.txt`
+2. `python app/keepyourmouthshut.py`
 
-TBD
+This will start the Flask app on port 64215 within a development environment. To run the app in production, delete `debug="TRUE"` in the `app/keepyourmouthshut.py` file. You can view the app in your browser at `http://localhost:64215/`.
 
-## Deployment
+## ⚠️ Deployment
 
-TBD
+This app can be deployed on AWS. The following official tutorial from AWS will show you how to serve a Flask app on AWS:
 
-## Built With
+https://aws.amazon.com/tutorials/serve-a-flask-app/
+
+If you want to deploy this app on AWS Lambda as a Serverless function, you can use <a href="https://github.com/zappa/Zappa" target="_blank">Zappa</a>.
+
+## 🛠️ Built With
 
 - [Python](https://www.python.org/)
 - [llmOS](https://www.llmos.dev/)
 - [edge-tts](https://github.com/rany2/edge-tts)
+- [Pixabay](https://pixabay.com/music/)
 
-## Contributing
+## 🎸 Music
+
+- Whistle Vibes - Music by <a href="https://pixabay.com/users/top-flow-production-28521292/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=172471">Sergio Prosvirini</a> from <a href="https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=172471">Pixabay</a>
+- Scandinavianz Thessaloniki - Music by <a href="https://pixabay.com/users/musicbyscandinavianz-35973063/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=173689">Oliver Moilanen</a> from <a href="https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=173689">Pixabay</a>
+- Lofi Chill (medium version) - Music by <a href="https://pixabay.com/users/bodleasons-28047609/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=159456">Bohdan Kuzmin</a> from <a href="https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=159456">Pixabay</a>
+- Bolero - Music by <a href="https://pixabay.com/users/lesfm-22579021/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=161191">Oleksii Kaplunskyi</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=161191">Pixabay</a>
+
+## 🚸 Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
+## 🪫 Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/rajtilakjee/keepyourmouthshut/tags).
 
-## Inspiration
+## 🏅 Acknowledgement
 
-This API is based on Adam Tal's [CrowdCast](https://github.com/rajtilakjee/keepyourmouthshut).
+1. Adam Tal - https://github.com/AdmTal
+2. rany2 - https://github.com/rany2
 
-## License
+## 🕹️ License
 
-This project is licensed under the [GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html) - see the LICENSE.md file for details
+This project is licensed under the GPL-3.0 license, see the [LICENSE.md](LICENSE.md) file for details
 
-## Citation
+## 📟 Citation
 
 ```
 cff-version: 1.2.0
