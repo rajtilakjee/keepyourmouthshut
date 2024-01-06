@@ -1,0 +1,11 @@
+[build]
+  command = "python app/keepyourmouthshut.py"
+  publish = "keepyourmouthshut/app"  # Adjust the path based on your project structure
+
+[dev]
+  command = "python app/keepyourmouthshut.py"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
