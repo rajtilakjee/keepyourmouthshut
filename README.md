@@ -7,6 +7,8 @@ _[Please consider sponsoring this project to help keep it alive!]_
 
 KeepYourMouthShut is an AI-assisted open-source app that provides a 360-degree podcast solution 🎙️ It has a developer-first approach for creating entire episodes of podcasts without requiring any expensive equpment or setup. The app takes a number of input from the end-user and based on that generates a script and an audio voice-over file based on that script.
 
+<div align="center"><img title="KeepYourMouthShut App" alt="KeepYourMouthShut App" src="public/app-screenshot.png"></div>
+
 <!-- omit in toc -->
 ## Table of Content
 
