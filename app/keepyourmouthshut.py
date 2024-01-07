@@ -8,11 +8,32 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    """
+    Route handler for the root URL ("/").
+
+    Returns:
+        flask.Response: The response object containing the rendered "index.html" template.
+    """
     return render_template("index.html")
 
 
 @app.route("/generate", methods=["POST"])
 def generate():
+    """
+    Route handler for generating a podcast based on user-submitted form data.
+
+    This route expects a POST request with the following form parameters:
+    - 'name': Name of the podcast.
+    - 'desc': Description of the podcast.
+    - 'topic1', 'topic2', 'topic3': Topics to be covered in the podcast.
+    - 'advert1', 'advert2': Advertisements to be included in the podcast.
+
+    The generated podcast includes the provided information and is packaged into a ZIP file
+    containing both an MP3 audio file and a corresponding text transcript file.
+
+    Returns:
+        flask.Response: A response object containing the ZIP file for download.
+    """
     name = request.form["name"]
     desc = request.form["desc"]
     topic1 = request.form["topic1"]

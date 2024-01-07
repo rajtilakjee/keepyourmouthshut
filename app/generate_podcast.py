@@ -14,6 +14,33 @@ _SECOND = 1000
 
 
 def generate_podcast(name, desc, topics, adverts):
+    """
+    Generate a podcast with the provided details.
+
+    Args:
+        name (str): Name of the podcast.
+        desc (str): Description of the podcast.
+        topics (list): List of topics to be covered in the podcast.
+        adverts (list): List of advertisements to be included in the podcast.
+
+    Returns:
+        Tuple[str, str]: A tuple containing the filenames of the generated audio file (MP3)
+        and script file (TXT).
+
+    The function generates podcast scripts based on provided topics and advertisements, creates an
+    introductory and outroductory script, and combines them into an MP3 audio file. The generated
+    script and audio files are saved with unique filenames including the current date and a
+    randomly generated UUID.
+
+    Note:
+        - The generated files are stored in the 'app/downloads/' directory.
+        - External libraries such as llmOS_stuff, string_stuff, date_stuff, and edge_tts_stuff
+          are assumed to be defined elsewhere.
+
+    Example:
+        audio_file, script_file = generate_podcast("My Podcast", "Description", ["Topic 1", "Topic 2"],
+                                                   ["Advert 1", "Advert 2"])
+    """
     current_date = date_stuff.get_tomorrows_date_for_file_names()
     unique_id = uuid.uuid4()
 
