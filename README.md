@@ -26,10 +26,13 @@ KeepYourMouthShut is an AI-assisted open-source app that provides a 360-degree p
 
 For local installation, clone the repository and run the following commands:
 
-1. `pip install -r requirements.txt`
-2. `python app/keepyourmouthshut.py`
+1. Install [FFMPEG](https://ffmpeg.org/)
+2. Create a free account on [llmOS](https://www.llmos.dev/) and get an API key
+3. Insert the API key in the `.env` file. A sample `.env` file is given.
+4. Run `pip install -r app/requirements.txt`
+5. Run `flask --app app/keepyourmouthshut.py run`
 
-This will start the Flask app on port 64215 within a development environment. To run the app in production, delete `debug="TRUE"` in the `app/keepyourmouthshut.py` file. You can view the app in your browser at `http://localhost:64215/`.
+This will start the Flask app on port 5000 within a development environment. You can view the app in your browser at `http://127.0.0.1:5000`.
 
 ## ⚠️ Deployment
 
@@ -37,7 +40,7 @@ This app can be deployed on AWS. The following official tutorial from AWS will s
 
 https://aws.amazon.com/tutorials/serve-a-flask-app/
 
-If you want to deploy this app on AWS Lambda as a Serverless function, you can use <a href="https://github.com/zappa/Zappa" target="_blank">Zappa</a>.
+If you want to deploy this app on AWS Lambda as a Serverless function, you can use [Zappa](https://github.com/zappa/Zappa).
 
 ## 🛠️ Built With
 
@@ -45,7 +48,7 @@ If you want to deploy this app on AWS Lambda as a Serverless function, you can u
 - [llmOS](https://www.llmos.dev/)
 - [edge-tts](https://github.com/rany2/edge-tts)
 - [ElevenLabs text2speech](https://elevenlabs.io/text-to-speech)
--[OpenAI API](https://openai.com/)
+- [OpenAI API](https://openai.com/)
 - [Pixabay](https://pixabay.com/music/)
 
 ## 🎸 Music
