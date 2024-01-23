@@ -44,6 +44,8 @@ If you want to deploy this app on AWS Lambda as a Serverless function, you can u
 - [Python](https://www.python.org/)
 - [llmOS](https://www.llmos.dev/)
 - [edge-tts](https://github.com/rany2/edge-tts)
+- [ElevenLabs text2speech](https://elevenlabs.io/text-to-speech)
+-[OpenAI API](https://openai.com/)
 - [Pixabay](https://pixabay.com/music/)
 
 ## 🎸 Music
