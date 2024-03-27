@@ -75,6 +75,16 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 This project is licensed under the GPL-3.0 license, see the [LICENSE.md](LICENSE.md) file for details
 
+## Star History
+
+<a href="https://star-history.com/#rajtilakjee/keepyourmouthshut&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=rajtilakjee/keepyourmouthshut&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=rajtilakjee/keepyourmouthshut&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=rajtilakjee/keepyourmouthshut&type=Date" />
+ </picture>
+</a>
+
 ## 📟 Citation
 
 ```
