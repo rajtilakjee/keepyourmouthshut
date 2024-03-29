@@ -1,0 +1,86 @@
+Read the Docs
+rajtilakjee▼
+Add a project configuration file
+Make sure your project has a .readthedocs.yaml configuration file at the root directory of your repository. This file is required by Read the Docs to build your documentation. You can read more about our configuration file in our documentation.
+
+Here is an example configuration file for a project using Sphinx:
+
+# .readthedocs.yaml
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+# Required
+version: 2
+
+# Set the OS, Python version and other tools you might need
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.12"
+    # You can also specify other tool versions:
+    # nodejs: "19"
+    # rust: "1.64"
+    # golang: "1.19"
+
+# Build documentation in the "docs/" directory with Sphinx
+sphinx:
+  configuration: docs/conf.py
+
+# Optionally build your docs in additional formats such as PDF and ePub
+# formats:
+#    - pdf
+#    - epub
+
+# Optional but recommended, declare the Python requirements required
+# to build your documentation
+# See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
+# python:
+#    install:
+#    - requirements: docs/requirements.txt
+Previous
+Stay Updated
+Blog
+Sign up for our newsletter to get our latest blog updates delivered to your inbox weekly.
+
+Email
+you@example.com
+Subscribe
+Resources
+Tutorial
+Team
+Documentation
+Going Ad-free
+Site Support
+Site Status
+Company
+Jobs
+Advertise with Us
+Read the Docs for Business
+Branding & Media Kit
+Privacy Policy
+Terms of Service
+ 
+© Copyright 2024, Read the Docs, Inc & contributors
+
+Version 10.23.1
+
+
+English [English]
+Amazon Web Services
+AWS
+Cloud Computing
+ CloudFlare
+Cloudflare
+DNS & SSL
+ Sentry
+Sentry
+Monitoring
+ Elastic
+Elastic
+Search
+ New Relic
+New Relic
+Performance
+ PagerDuty
+PagerDuty
+Monitoring
