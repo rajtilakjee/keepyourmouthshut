@@ -1,3 +1,4 @@
+import os
 import uuid
 from pydub import AudioSegment
 
@@ -8,7 +9,20 @@ from prompts import (
     podcast_segment,
     podcast_segue,
 )
-from utils import date_stuff, edge_tts_stuff, string_stuff, llmOS_stuff
+from utils import date_stuff, string_stuff
+
+# Provider switches — both keep the original module names as aliases so
+# every call site below ("edge_tts_stuff.convert_text_to_mp3(...)" and
+# "llmOS_stuff.generate_response(...)") stays unchanged regardless of
+# which backend is selected. Defaults preserve the existing pipeline.
+if os.getenv("TTS_PROVIDER", "edge").strip().lower() in ("sixtydb", "60db"):
+    from utils import sixtydb_tts_stuff as edge_tts_stuff
+else:
+    from utils import edge_tts_stuff
+if os.getenv("LLM_PROVIDER", "llmos").strip().lower() in ("sixtydb", "60db"):
+    from utils import sixtydb_llm_stuff as llmOS_stuff
+else:
+    from utils import llmOS_stuff
 
 _SECOND = 1000
 
@@ -142,7 +156,8 @@ def generate_podcast(name, desc, topics, adverts):
         )
     script_file = f"{current_date}_{unique_id}.txt"
 
-    # Use elevenlabs to generate the MP3s
+    # Generate MP3s for each pipeline section via the selected TTS
+    # provider (edge_tts by default; 60db when TTS_PROVIDER=sixtydb).
     cache_dir = "app/cache/"
     edge_tts_stuff.convert_text_to_mp3(text=intro, filename="intro.mp3")
     intro_audio = AudioSegment.from_mp3(cache_dir + "intro.mp3")
