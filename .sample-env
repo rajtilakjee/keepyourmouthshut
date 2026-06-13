@@ -1,1 +1,14 @@
 llmOS_API_KEY="Bearer <API key>"
+
+# Optional: 60db cloud (TTS + LLM + STT). Defaults keep edge_tts + llmOS.
+# Flip either switch independently:
+#   TTS_PROVIDER=sixtydb   -> utils/sixtydb_tts_stuff.py
+#   LLM_PROVIDER=sixtydb   -> utils/sixtydb_llm_stuff.py
+# TTS_PROVIDER=
+# LLM_PROVIDER=
+# SIXTYDB_API_KEY=sk_live_...
+# SIXTYDB_API_BASE=https://api.60db.ai
+# SIXTYDB_LLM_MODEL=60db-tiny
+# SIXTYDB_TTS_VOICE_ID=fbb75ed2-975a-40c7-9e06-38e30524a9a1
+# SIXTYDB_TTS_TRANSPORT=sync          # sync | stream | ws
+# SIXTYDB_STT_LANGUAGE=auto

@@ -45,11 +45,24 @@ If you want to deploy this app on AWS Lambda as a Serverless function, you can u
 ## 🛠️ Built With
 
 - [Python](https://www.python.org/)
-- [llmOS](https://www.llmos.dev/)
-- [edge-tts](https://github.com/rany2/edge-tts)
-- [ElevenLabs text2speech](https://elevenlabs.io/text-to-speech)
-- [OpenAI API](https://openai.com/)
-- [Pixabay](https://pixabay.com/music/)
+- [llmOS](https://www.llmos.dev/) — default LLM (Mistral-7B)
+- [edge-tts](https://github.com/rany2/edge-tts) — default TTS (`en-GB-SoniaNeural`)
+- [60db](https://docs.60db.ai) — optional drop-in peer for TTS + LLM + STT (this fork)
+- [Pixabay](https://pixabay.com/music/) — royalty-free background music
+
+### 60db provider (alongside edge_tts + llmOS)
+
+This fork adds [60db](https://docs.60db.ai) as a peer provider for the same two services KYMS already uses. One `SIXTYDB_API_KEY` covers all three concerns; each switch is independent so you can mix providers:
+
+| Concern | File | Env switch | 60db endpoint |
+|---|---|---|---|
+| TTS | `app/utils/sixtydb_tts_stuff.py` | `TTS_PROVIDER=sixtydb` | `POST /tts-synthesize` (default), `POST /tts-stream`, or `wss://api.60db.ai/ws/tts` |
+| LLM | `app/utils/sixtydb_llm_stuff.py` | `LLM_PROVIDER=sixtydb` | `POST /v1/chat/completions` |
+| STT | `app/utils/sixtydb_stt_stuff.py` | _utility_ (no auto-consumer in pipeline) | `POST /stt` |
+
+Default behaviour is unchanged — both `edge_tts` and `llmOS` keep working without any `.env` edits. Flip the switches when you want 60db.
+
+Pick the TTS transport surface via `SIXTYDB_TTS_TRANSPORT=sync|stream|ws` (default `sync`; `ws` requires the optional `websockets` package).
 
 ## 🎸 Music
 
