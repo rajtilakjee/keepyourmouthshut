@@ -12,13 +12,14 @@ requires-python = ">=3.8,<3.13"
 dependencies = [
     "asyncio==3.4.3",
     "edge-tts==6.1.9",
-    "flask==3.0.0",
+    "fastapi>=0.124.4",
     "pre-commit==3.5.0",
     "pydub==0.25.1",
     "python-dotenv==1.0.0",
     "pyyaml==6.0.1",
     "requests==2.31.0",
     "shutils==0.1.0",
+    "uvicorn>=0.33.0",
     "websockets==12.0",
 ]
 

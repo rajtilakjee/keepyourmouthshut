@@ -29,24 +29,23 @@ For local installation, clone the repository and run the following commands:
 1. Install [FFMPEG](https://ffmpeg.org/)
 2. Create a free account on [llmOS](https://www.llmos.dev/) and get an API key
 3. Insert the API key in the `.env` file. A sample `.env` file is given.
-4. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+4. Install [uv](https://docs.astral.sh/uv/getting-started/installation/) and [Node.js](https://nodejs.org/)
 5. Run `uv sync`
-6. Run `uv run flask --app app/keepyourmouthshut.py run`
+6. Run `uv run uvicorn main:app --app-dir app --host 127.0.0.1 --port 8000`
+7. In another terminal, from `frontend/`, run `npm install` and then `npm run dev`
 
-This will start the Flask app on port 5000 within a development environment. You can view the app in your browser at `http://127.0.0.1:5000`.
+The Next.js app is at `http://127.0.0.1:3000`. It sends the form to the FastAPI backend on port 8000 and downloads the generated zip. Set `NEXT_PUBLIC_API_URL` if the API is not at `http://127.0.0.1:8000`, and set `CORS_ORIGINS` on the API to the UI origin.
 
 ## ⚠️ Deployment
 
-This app can be deployed on AWS. The following official tutorial from AWS will show you how to serve a Flask app on AWS:
-
-https://aws.amazon.com/tutorials/serve-a-flask-app/
-
-If you want to deploy this app on AWS Lambda as a Serverless function, you can use [Zappa](https://github.com/zappa/Zappa).
+Serve the API with uvicorn and the UI with `npm run build` followed by `npm run start` inside `frontend/`. Point `NEXT_PUBLIC_API_URL` at the public API origin, and set `CORS_ORIGINS` to the public UI origin.
 
 ## 🛠️ Built With
 
 - [Python](https://www.python.org/)
-- [uv](https://docs.astral.sh/uv/) — package manager
+- [FastAPI](https://fastapi.tiangolo.com/) — API
+- [Next.js](https://nextjs.org/) — web UI
+- [uv](https://docs.astral.sh/uv/) — Python package manager
 - [llmOS](https://www.llmos.dev/) — default LLM (Mistral-7B)
 - [edge-tts](https://github.com/rany2/edge-tts) — default TTS (`en-GB-SoniaNeural`)
 - [60db](https://docs.60db.ai) — optional drop-in peer for TTS + LLM + STT (this fork)

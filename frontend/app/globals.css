@@ -1,0 +1,151 @@
+body {
+  background: linear-gradient(to right, #2d3748, #6b46c1, #2d3748);
+  color: white;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+  width: min(520px, calc(100% - 2rem));
+  margin: 4.5rem auto 2rem;
+}
+
+.container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.brand {
+  margin-bottom: 1rem;
+}
+
+.logo {
+  width: 130px;
+  height: 130px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+h1,
+h3,
+p,
+label {
+  color: #333;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.35rem 0 1rem;
+}
+
+.sponsor {
+  display: inline-block;
+  background-color: #6b46c1;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+.tabs button {
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #6b46c1;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.tabs button.active {
+  outline: 2px solid #2d3748;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  text-align: start;
+}
+
+textarea {
+  width: 100%;
+  min-height: 4.5rem;
+  padding: 0.5rem;
+  border: 1px solid #6b46c1;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font: inherit;
+  resize: vertical;
+}
+
+.submit {
+  background-color: #6b46c1;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.status {
+  color: #333;
+  margin: 1rem 0 0;
+  text-align: start;
+}
+
+.status.error {
+  color: #9b2c2c;
+}
+
+.footer {
+  color: white;
+  margin: 0 0 2rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.footer a {
+  color: white;
+  margin: 0 0.75rem;
+  text-decoration: none;
+}

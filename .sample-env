@@ -1,5 +1,8 @@
 llmOS_API_KEY="Bearer <API key>"
 
+# Comma-separated browser origins allowed to call the API. Defaults to the local Next.js app.
+# CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+
 # Optional: 60db cloud (TTS + LLM + STT). Defaults keep edge_tts + llmOS.
 # Flip either switch independently:
 #   TTS_PROVIDER=sixtydb   -> utils/sixtydb_tts_stuff.py
