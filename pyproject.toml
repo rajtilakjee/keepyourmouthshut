@@ -1,0 +1,26 @@
+[project]
+name = "keepyourmouthshut"
+version = "0.0.1"
+description = "AI-assisted open-source podcast generator"
+readme = "README.md"
+license = "GPL-3.0-only"
+authors = [
+    { name = "Rajtilak Bhattacharjee" },
+]
+# PyYAML 6.0.1 publishes wheels through CPython 3.12.
+requires-python = ">=3.8,<3.13"
+dependencies = [
+    "asyncio==3.4.3",
+    "edge-tts==6.1.9",
+    "flask==3.0.0",
+    "pre-commit==3.5.0",
+    "pydub==0.25.1",
+    "python-dotenv==1.0.0",
+    "pyyaml==6.0.1",
+    "requests==2.31.0",
+    "shutils==0.1.0",
+    "websockets==12.0",
+]
+
+[tool.uv]
+package = false

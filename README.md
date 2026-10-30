@@ -29,8 +29,9 @@ For local installation, clone the repository and run the following commands:
 1. Install [FFMPEG](https://ffmpeg.org/)
 2. Create a free account on [llmOS](https://www.llmos.dev/) and get an API key
 3. Insert the API key in the `.env` file. A sample `.env` file is given.
-4. Run `pip install -r app/requirements.txt`
-5. Run `flask --app app/keepyourmouthshut.py run`
+4. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+5. Run `uv sync`
+6. Run `uv run flask --app app/keepyourmouthshut.py run`
 
 This will start the Flask app on port 5000 within a development environment. You can view the app in your browser at `http://127.0.0.1:5000`.
 
@@ -45,6 +46,7 @@ If you want to deploy this app on AWS Lambda as a Serverless function, you can u
 ## 🛠️ Built With
 
 - [Python](https://www.python.org/)
+- [uv](https://docs.astral.sh/uv/) — package manager
 - [llmOS](https://www.llmos.dev/) — default LLM (Mistral-7B)
 - [edge-tts](https://github.com/rany2/edge-tts) — default TTS (`en-GB-SoniaNeural`)
 - [60db](https://docs.60db.ai) — optional drop-in peer for TTS + LLM + STT (this fork)
