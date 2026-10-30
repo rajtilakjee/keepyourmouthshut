@@ -22,10 +22,13 @@ import asyncio
 import base64
 import io
 import json
+import logging
 import os
 from pathlib import Path
 
 import requests
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_API_BASE = "https://api.60db.ai"
 DEFAULT_VOICE_ID = "fbb75ed2-975a-40c7-9e06-38e30524a9a1"
@@ -172,6 +175,6 @@ async def _ws_collect(text: str, voice_id: str, api_base: str, api_key: str) -> 
                 try:
                     await ws.send(json.dumps({"close_context": {"context_id": context_id}}))
                 except Exception:
-                    pass
+                    logger.warning("60db TTS failed to close the websocket context", exc_info=True)
                 break
     return b"".join(pcm_chunks)
